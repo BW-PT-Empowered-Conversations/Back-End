@@ -28,6 +28,7 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "brcypt": "^1.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
