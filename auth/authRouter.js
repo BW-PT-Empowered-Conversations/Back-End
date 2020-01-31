@@ -20,8 +20,9 @@ router.post('/login', (req, res) => {
   const { username, password } = req.body 
   User.findByUsername(username)
     .then(user => {
-      if (user && bcrypt.compareSync(password, user.password)) {
-        //console.log(user)
+      if ((user.username === username) && bcrypt.compareSync(password, user.password)) {
+        console.log(user)
+        console.log(username)
         const token = tokenGenerator(user)
         res.status(200).json({ message:"User successfully logged in!",  token})
       }
