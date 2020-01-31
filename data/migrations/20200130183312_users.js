@@ -17,6 +17,8 @@ exports.up = function(knex) {
             tbl.string('user_phone', 10)
             .notNullable();
             tbl.string('email', 128)
+            .notNullable()
+            .unique()
         })
         .createTable('messages', tbl => {
             tbl.increments();
