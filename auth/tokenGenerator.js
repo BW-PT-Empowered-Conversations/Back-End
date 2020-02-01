@@ -6,7 +6,7 @@ module.exports = (user) => {
         id: user.id
     }
     const options = {
-        expiresIn: '48h'
+        expiresIn: '72h'
     }
     return jwt.sign(payload, process.env.JWT_SECRET_SAUCE || 'Top_Secret', options)
 }
