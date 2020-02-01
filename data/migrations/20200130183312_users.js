@@ -20,24 +20,63 @@ exports.up = function(knex) {
             .notNullable()
             .unique()
         })
-        .createTable('messages', tbl => {
+
+        .createTable('conversations', tbl => {
             tbl.increments();
             tbl
-            .string('message', 255)
+            .string('first_name', 32)
             .notNullable()
+            tbl
+            .string('last_name', 32)
             tbl
             .integer('user_id')
             .notNullable()
             .references('id')
             .inTable('users')
             .onDelete('CASCADE')
-            .onUpdate('CASCADE');
+            .onUpdate('CASCADE')
+            tbl
+            .string('recipient_phone', 10)
+            tbl
+            .string('topic', 64)
         })
+
+        .createTable('messages', tbl => {
+            tbl.increments();
+            tbl
+            .string('message', 255)
+            .notNullable()
+            // tbl
+            // .integer('user_id')
+            // .notNullable()
+            // .references('id')
+            // .inTable('users')
+            // .onDelete('CASCADE')
+            // .onUpdate('CASCADE')
+            tbl
+            .integer('conversation_id')
+            .notNullable()
+            .references('id')
+            .inTable('conversations')
+            .onDelete('CASCADE')
+            .onUpdate('CASCADE')
+            tbl
+            .string('sender_number')
+            .notNullable()
+            tbl
+            .string('time_sent', 128)
+            .notNullable()
+            tbl
+            .integer('message_timestamp', 64)
+            .notNullable();
+        })
+        
   };
   
   exports.down = function(knex, Promise) {
     return knex.schema
         .dropTableIfExists('messages')
+        .dropTableIfExists('conversations')
         .dropTableIfExists('users')
   };
   
