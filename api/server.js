@@ -12,7 +12,7 @@ server.use(cors());
 server.use(helmet());
 
 server.use('/api/', authRouter);
-server.use('/api/', authMiddleware, conversationsRouter);
+server.use('/api/user', authMiddleware, conversationsRouter);
 
 server.get("/", (req,res) => {
     res.status(200).json({ message: "Empowerment Conversations API running." })
