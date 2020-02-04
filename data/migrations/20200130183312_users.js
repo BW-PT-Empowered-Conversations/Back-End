@@ -24,10 +24,10 @@ exports.up = function(knex) {
         .createTable('conversations', tbl => {
             tbl.increments();
             tbl
-            .string('first_name', 32)
+            .string('recipient_first_name', 32)
             .notNullable()
             tbl
-            .string('last_name', 32)
+            .string('recipient_last_name', 32)
             tbl
             .integer('user_id')
             .notNullable()

@@ -19,8 +19,8 @@ router.get("/:userId", (req, res) => {
 // adds a new conversation
 router.post("/:user_id", (req, res) => {
     const { user_id } = req.params 
-    const { first_name, last_name, recipient_phone, topic } = req.body
-    const newConversation = { user_id, first_name, last_name, recipient_phone, topic}
+    const { recipient_first_name, recipient_last_name, recipient_phone, topic } = req.body
+    const newConversation = { user_id, recipient_first_name, recipient_last_name, recipient_phone, topic }
     Conversations.addConversation(newConversation)
     .then(id => {
         console.log(id)
@@ -75,8 +75,8 @@ router.delete("/:user_id/:conversation_id", (req, res) => {
 router.put("/:user_id/:conversation_id", (req, res) => {
     const { user_id, conversation_id } = req.params 
     console.log(req.params)
-    const { first_name, last_name, recipient_phone, topic} = req.body
-    const changes = { first_name, last_name, recipient_phone, topic }
+    const { recipient_first_name, recipient_last_name, recipient_phone, topic} = req.body
+    const changes = { recipient_first_name, recipient_last_name, recipient_phone, topic }
     Conversations.findByConversationId(user_id, conversation_id)
         .then(conversation => {
             if (conversation[0]){
