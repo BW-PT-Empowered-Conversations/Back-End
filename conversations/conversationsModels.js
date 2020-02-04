@@ -1,18 +1,48 @@
 const db = require("../data/db")
 
-function add(user) {
-    return db('users')
-      .insert(user)
-      .returning("id")
-  }
 
-function findByUserId(user_id){
+// function findByUserId(userId){
+//     return db('conversations')
+//         .where({ userId })
+//         .returning("*")
+// }
+
+function findConversationByUserId(user_id){
     return db('conversations')
         .where({ user_id })
         .returning("*")
 }
+function addConversation(newConversation) {
+    return db('conversations')
+      .insert(newConversation)
+      .returning("id")
+  }
+
+  function findByConversationId(user_id, id){
+    findConversationByUserId(user_id)
+        return db('conversations')
+            .where({ id })
+            .returning("*")
+    }
+
+
+    function deleteConversation(id) {
+        return db('conversations')
+        .where({id})
+        .delete()
+      }
+
+    function updateConversation(id, changes) {
+        return db('conversations')
+        .where({id})
+        .update(changes)
+      }
+    
 
 module.exports = {
-    add,
-    findByUserId
+    findConversationByUserId,
+    findByConversationId,
+    addConversation,
+    deleteConversation,
+    updateConversation
 }
