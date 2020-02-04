@@ -7,8 +7,20 @@ router.post('/register', (req, res) => {
   const { username, password, first_name, last_name, email, user_phone } = req.body 
   User.add({ username, password: bcrypt.hashSync(password, 10), first_name, last_name, email, user_phone })
     .then(id => {
-        const token = tokenGenerator(user)
-        res.status(201).json({ message:"User successfully registered!", id, token })
+        User.findByUserId(id[0])
+            .then(user => {
+                const token = tokenGenerator(user)
+                const regRes = {
+                    message:"User successfully registered!",
+                    id: user.id,
+                    username: user.username,
+                    id:user.id,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    token
+                }
+                res.status(201).json(regRes)
+            }) 
     })
     .catch(err => {
         console.log(err)
@@ -22,20 +34,24 @@ router.post('/login', (req, res) => {
   User.findByUsername(username)
     .then(user => {
       if ((user.username === username) && bcrypt.compareSync(password, user.password)) {
-        console.log(`login time ${console.log(Date())}`)
-        console.log(user)
-        console.log(username)
-        console.log(Date.now())
         const token = tokenGenerator(user)
-        res.status(200).json({ message:"User successfully logged in!",  token})
+        const loginRes = {
+            message:"User successfully logged in!",
+            username: user.username,
+            id:user.id,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            token
+        }
+        res.status(200).json(loginRes)
       }
       else {
-        res.status(401).json({ message:"unauthorized" })
+        res.status(401).json({ message:"invalid username or password" })
       }
     })
     .catch(err => {
       console.log(err)
-      res.status(500).json({ err:"user could not be logged in" })
+      res.status(500).json({ err:"Server error, user could not be logged in" })
   })
 });
 
