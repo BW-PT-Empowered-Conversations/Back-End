@@ -7,7 +7,8 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "test": "cross-env DB_ENV=testing jest --watch --verbose",
-    "knexdev": "knex migrate:rollback && knex migrate:latest && knex seed:run"
+    "knexdev": "knex migrate:rollback && knex migrate:latest && knex seed:run",
+    "docs":"apidoc -i ./ -e node_modules -o ./docs"
   },
   "repository": {
     "type": "git",
