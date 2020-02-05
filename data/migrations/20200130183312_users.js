@@ -61,7 +61,7 @@ exports.up = function(knex) {
             .onDelete('CASCADE')
             .onUpdate('CASCADE')
             tbl
-            .string('sender_number')
+            .string('sent_by', 9)
             .notNullable()
             tbl
             .string('time_sent', 128)

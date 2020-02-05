@@ -24,7 +24,7 @@ router.post("/:user_id", (req, res) => {
     Conversations.addConversation(newConversation)
     .then(id => {
         console.log(id)
-        res.status(200).json(id)
+        res.status(201).json(id)
     })
     .catch(err => {
         console.log(err)
