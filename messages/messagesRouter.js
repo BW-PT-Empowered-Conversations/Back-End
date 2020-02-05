@@ -16,4 +16,17 @@ router.get("/:user_id/:conversation_id/messages", (req, res) => {
     })
 })
 
+//gets a specific message given message id
+router.get("/:user_id/:conversation_id/message/:message_id", (req, res) => {
+    const { user_id, conversation_id, message_id } = req.params 
+    Messages.findMessageByMessageId(message_id)
+    .then(message => {
+        res.status(200).json(message)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({error:"Server error. Unable to retrieve message"})
+    })   
+})
+
 module.exports = router

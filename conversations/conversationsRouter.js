@@ -32,10 +32,9 @@ router.post("/:user_id", (req, res) => {
     })
 })
 
-
+//gets a specific conversation given a user id and conversation id
  router.get("/:user_id/:conversation_id", (req, res) => {
     const { user_id, conversation_id } = req.params 
-    console.log(req.params)
     Conversations.findByConversationId(user_id, conversation_id)
     .then(conversation => {
         res.status(200).json(conversation)
