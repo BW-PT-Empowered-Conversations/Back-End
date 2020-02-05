@@ -15,11 +15,22 @@ function findMessageByMessageId(id){
             .returning("*")
     }
 
+    function deleteMessageById(id) {
+        return db('messages')
+        .where({id})
+        .delete()
+      }
+
+    function sendMessage(message) {
+    return db('messages')
+      .insert(message)
+      .returning("id")
+  }
 
 
 module.exports = {
     findMessagesByConversationId,
     findMessageByMessageId,
-    replyToMessage,
-    deleteMessage
+    sendMessage,
+    deleteMessageById
 }

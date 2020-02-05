@@ -67,7 +67,7 @@ exports.up = function(knex) {
             .string('time_sent', 128)
             .notNullable()
             tbl
-            .integer('message_timestamp', 64)
+            .bigint('message_timestamp', 64)
             .notNullable();
         })
         

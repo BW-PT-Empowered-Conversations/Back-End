@@ -29,4 +29,51 @@ router.get("/:user_id/:conversation_id/message/:message_id", (req, res) => {
     })   
 })
 
+// sends a new message by the user
+router.post("/:user_id/:conversation_id/message", (req, res) => {
+    const { user_id, conversation_id } = req.params 
+    const { message } = req.body
+    const messageParser = { 
+        message, 
+        conversation_id,
+        sent_by: "user", 
+        time_sent:Date(), 
+        message_timestamp:Date.now()
+     }
+     console.log(messageParser)
+    Messages.sendMessage(messageParser)
+    .then(id => {
+        console.log(id)
+        res.status(201).json(id)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({error:"Server error. Unable to retrieve user"})
+    })
+})
+
+//deletes a message given a message id
+router.delete("/:user_id/:conversation_id/message/:message_id", (req, res) => {
+    const { user_id, conversation_id, message_id } = req.params 
+    Messages.findMessageByMessageId(message_id)
+        .then(message => {
+            if (message[0]){
+                Messages.deleteMessageById(message_id)
+                    .then(elementsDeleted => {
+                    console.log(elementsDeleted)
+                    res.status(204).json({message:"message successfully deleted"})
+                    })
+                }
+            else {
+                res.status(400).json({err:"unable to find message id"})
+            }
+      
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({error:"Server error. Unable to retrieve message"})
+    })   
+    
+})
+
 module.exports = router
