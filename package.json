@@ -8,7 +8,7 @@
     "server": "nodemon index.js",
     "test": "jest --watch --verbose --runInBand",
     "knexdev": "knex migrate:rollback && knex migrate:latest && knex seed:run",
-    "docs": "npx apidoc -f .js -i ./routes -o docs/ -e node_modules/"
+    "makedocs": "npx apidoc -f .js -i ./routes -o docs/ -e node_modules/"
   },
   "repository": {
     "type": "git",
