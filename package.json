@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "test": "cross-env DB_ENV=testing jest --watch --verbose",
-    "knexdev": "knex migrate:rollback && knex migrate:latest && knex seed:run"
+    "test": "jest --watch --verbose --runInBand",
+    "knexdev": "knex migrate:rollback && knex migrate:latest && knex seed:run",
+    "docs": "npx apidoc -f .js -i ./routes -o docs/ -e node_modules/"
   },
   "repository": {
     "type": "git",
