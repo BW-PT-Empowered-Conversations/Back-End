@@ -33,3 +33,14 @@ describe("Finds a specific conversation", () => {
     //expect(res.body.message).toEqual("")
   })
 })
+
+describe("Finds conversation that does not exist", () => {
+    it('shows an error message with a 401', async () => {
+    const res = await request(server)
+        .get("/api/user/1/555")
+    expect(res.status).toBe(401)
+    expect(res.type).toBe("application/json")
+    //expect(res.body.message).toEqual("")
+  })
+})
+
