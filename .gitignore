@@ -80,4 +80,4 @@ typings/
 .dynamodb/
 
 # exclude apidocs
-docs/
+#docs/

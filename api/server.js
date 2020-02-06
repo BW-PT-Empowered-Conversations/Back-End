@@ -23,12 +23,11 @@ server.get("/", (req,res) => {
 
 
 /**
- * @api {post} /api/ Add Owner
- * @apiName AddOwner
- * @apiGroup Owners
+ * @api {get} / 
+ * @apiName BASEURL
+ * @apiGroup BASEURL
  
  */
-
  
 
 

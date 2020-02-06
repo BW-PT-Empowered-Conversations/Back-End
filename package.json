@@ -2,17 +2,13 @@
   "name": "Back-End",
   "version": "1.0.0",
   "description": "* * *",
-  "apidoc": {
-    "title": "Custom apiDoc browser title",
-    "url": "https://api.github.com/"
-  },
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
     "test": "jest --watch --verbose --runInBand",
     "knexdev": "knex migrate:rollback && knex migrate:latest && knex seed:run",
-    "docs": "apidoc -i ./ -e node_modules -o ./docs"
+    "docs": "npx apidoc -f .js -i ./routes -o docs/ -e node_modules/"
   },
   "repository": {
     "type": "git",
