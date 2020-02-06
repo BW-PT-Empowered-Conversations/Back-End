@@ -229,6 +229,7 @@ router.put("/:user_id/:conversation_id", (req, res) => {
 * @apiParam {Integer} user_id the id of the user as a URL parameter
 * @apiParam {Integer} conversation_id the id of the conversation as a URL parameter
 *
+* @apiSuccess {String} message A successfully updated message
 * @apiSuccessExample Example of body:
 *{
 *   recipient_first_name:"Johnny",

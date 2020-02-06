@@ -476,34 +476,6 @@ define({ "api": [
             "optional": false,
             "field": "conversation_id",
             "description": "<p>the id of the conversation as a URL parameter</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "recipient_first_name",
-            "description": "<p>A name for the recipient in the body</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "recipient_last_name",
-            "description": "<p>A name for the recipient in the body</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "recipient_phone",
-            "description": "<p>A number for the recipient (10 digits) in the body</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "topic",
-            "description": "<p>A topic for the conversation in the body</p>"
           }
         ]
       }
@@ -548,6 +520,17 @@ define({ "api": [
       }
     },
     "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>A successfully updated message</p>"
+          }
+        ]
+      },
       "examples": [
         {
           "title": "Example of body:",
@@ -564,5 +547,318 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "./conversations/conversationsRouter.js",
     "groupTitle": "Conversations"
+  },
+  {
+    "type": "delete",
+    "url": "/api/user/:user_id/:conversation_id/message/:message_id",
+    "title": "Delete Message by User Id, Conversation Id, and Message Id",
+    "name": "DeleteMessageByUserIdConversationIdAndMessageId",
+    "group": "Messages",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>the id of the user as a URL parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "conversation_id",
+            "description": "<p>the id of the conversation as a URL parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "message_id",
+            "description": "<p>the id of the message as a URL parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Example of Successful Reponse:",
+          "content": "HTTP/1.1 204 OK",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./messages/messagesRouter.js",
+    "groupTitle": "Messages"
+  },
+  {
+    "type": "get",
+    "url": "/api/user/:user_id/:conversation_id/message/:message_id",
+    "title": "Message by User Id, Conversation Id, and Message Id",
+    "name": "MessageByUserIdConversationIdAndMessageId",
+    "group": "Messages",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>the id of the user as a URL parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "conversation_id",
+            "description": "<p>the id of the conversation as a URL parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "message_id",
+            "description": "<p>the id of the message as a URL parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>A unique id that identifies the message</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>The message by the user or the recipient</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "conversation_id",
+            "description": "<p>The conversation_id that belongs to the message</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "sent_by",
+            "description": "<p>Describes whether the massage was sent by either the user or the recipient</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "time_sent",
+            "description": "<p>A javascript time stamp with the Date() method</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message_timestamp",
+            "description": "<p>A javascript time stamp with the Date().now method (unix timestamp)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Objects[]",
+            "optional": false,
+            "field": "array",
+            "description": "<p>List of messages (Array of specified message Object)</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Example of Successful Reponse:",
+          "content": "HTTP/1.1 200 OK\n[\n {\n   id: 2,\n   message: \"hello world\",\n   conversation_id: 1,\n   sent_by: \"recipient\",\n   time_sent: \"Thu Feb 06 2020 14:38:18 GMT+0000 (Coordinated Universal Time)\",\n   message_timestamp: \"1580999898934\"\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./messages/messagesRouter.js",
+    "groupTitle": "Messages"
+  },
+  {
+    "type": "get",
+    "url": "/api/user/:user_id/:conversation_id/messages",
+    "title": "Message List by User Id and Conversation Id",
+    "name": "MessageList",
+    "group": "Messages",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>the id of the user as a URL parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "conversation_id",
+            "description": "<p>the id of the conversation as a URL parameter</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "id",
+            "description": "<p>A unique id that identifies the message</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>The message by the user or the recipient</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "conversation_id",
+            "description": "<p>The conversation_id that belongs to the message</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "sent_by",
+            "description": "<p>Describes whether the massage was sent by either the user or the recipient</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "time_sent",
+            "description": "<p>A javascript time stamp with the Date() method</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message_timestamp",
+            "description": "<p>A javascript time stamp with the Date().now method (unix timestamp)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Objects[]",
+            "optional": false,
+            "field": "array",
+            "description": "<p>List of messages (Array of Objects)</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Example of Successful Reponse:",
+          "content": "HTTP/1.1 200 OK\n[\n {\n   id: 1,\n   message: \"hello world\",\n   conversation_id: 1,\n   sent_by: \"user\",\n   time_sent: \"Thu Feb 06 2020 14:33:59 GMT+0000 (Coordinated Universal Time)\",\n   message_timestamp: \"1580999639432\"\n },\n {\n   id: 2,\n   message: \"hello world\",\n   conversation_id: 1,\n   sent_by: \"recipient\",\n   time_sent: \"Thu Feb 06 2020 14:38:18 GMT+0000 (Coordinated Universal Time)\",\n   message_timestamp: \"1580999898934\"\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./messages/messagesRouter.js",
+    "groupTitle": "Messages"
+  },
+  {
+    "type": "post",
+    "url": "/api/user/:user_id/:conversation_id/message",
+    "title": "Send A message",
+    "name": "SendMessage",
+    "group": "Messages",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>the id of the user as a URL parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "conversation_id",
+            "description": "<p>the id of the conversation as a URL parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "message_id",
+            "description": "<p>the id of the message as a URL parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>A message to the recipient in the body (required)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Integer",
+            "optional": false,
+            "field": "message_id",
+            "description": "<p>A unique id that identifies the created message</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "array",
+            "description": "<p>An array containing the created message_id</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Example of body:",
+          "content": "{\n  message:\"Hello World!\",\n}",
+          "type": "json"
+        },
+        {
+          "title": "Example of sucessful response:",
+          "content": "HTTP/1.1 201 OK\n[\n2  \n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./messages/messagesRouter.js",
+    "groupTitle": "Messages"
   }
 ] });
