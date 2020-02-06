@@ -165,14 +165,14 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "user_first",
+            "field": "first_name",
             "description": "<p>The first name of the registered user</p>"
           },
           {
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "user_last",
+            "field": "last_name",
             "description": "<p>The last name of the registered user</p>"
           },
           {
@@ -276,8 +276,8 @@ define({ "api": [
             "group": "Success 200",
             "type": "Objects[]",
             "optional": false,
-            "field": "An",
-            "description": "<p>array with the single specified conversation (Array of specified conversation Object)</p>"
+            "field": "array",
+            "description": "<p>An array with the single specified conversation (Array of specified conversation Object)</p>"
           }
         ]
       },

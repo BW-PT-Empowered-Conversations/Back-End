@@ -140,7 +140,7 @@ HTTP/1.1 201 OK
 * @apiSuccess {String} recipient_last_name The last name of the recipient
 * @apiSuccess {String} recipient_phone The phone number of the recipient
 * @apiSuccess {Integer} user_id The user id of the user who created the conversation
-* @apiSuccess {Objects[]} An array with the single specified conversation (Array of specified conversation Object)
+* @apiSuccess {Objects[]}array An array with the single specified conversation (Array of specified conversation Object)
 *
 * @apiSuccessExample Example of Successful Reponse:
 * HTTP/1.1 200 OK

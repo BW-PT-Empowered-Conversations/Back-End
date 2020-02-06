@@ -52,8 +52,8 @@ router.post('/register', (req, res) => {
 * @apiSuccess {String} message A successfully registered message
 * @apiSuccess {String} username The successfully registered username
 * @apiSuccess {Integer} id The id of the registered user
-* @apiSuccess {String} user_first The first name of the registered user
-* @apiSuccess {String} user_last The last name of the registered user    
+* @apiSuccess {String} first_name The first name of the registered user
+* @apiSuccess {String} last_name The last name of the registered user    
 * @apiSuccess {String} token A JWT token 
 * 
 * @apiSuccessExample Example of Successful Reponse:
