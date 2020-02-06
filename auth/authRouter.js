@@ -25,9 +25,49 @@ router.post('/register', (req, res) => {
     .catch(err => {
         console.log(err)
         res.status(500).json({err:"user could not be registered"})
-  })
+    })
+})
+/**
+* @api {post} /api/register Register User
+* @apiName RegisterUser
+* @apiGroup Auth
+*
+* @apiParam {String} username A username (required)(unique)
+* @apiParam {String} password A password (required)
+* @apiParam {String} email A user email (unique)(required)
+* @apiParam {String} first_name A user first username (required) 
+* @apiParam {String} last_name A user last name (required)
+* @apiParam {String} user_phone A user phone number (required)(10 digits)
+* 
+* @apiSuccessExample Example of body:
+*{
+*   username:"Joe",
+*	password:"123456",
+*	email:"joe@joe.com",
+*	user_phone:"1231231231",
+*	first_name:"Joe",
+*	last_name:"M"
+}
+* 
+* @apiSuccess {String} message A successfully registered message
+* @apiSuccess {String} username The successfully registered username
+* @apiSuccess {Integer} id The id of the registered user
+* @apiSuccess {String} user_first The first name of the registered user
+* @apiSuccess {String} user_last The last name of the registered user    
+* @apiSuccess {String} token A JWT token 
+* 
+* @apiSuccessExample Example of Successful Reponse:
+* HTTP/1.1 201 OK
+* {
+*   message: "User successfully registered!",
+*   username: "Joe",
+*   id: 2,
+*   first_name: "Joe",
+*   last_name: "M",
+*   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkhvbWVyIiwiaWQiOjEsImlhdCI6MTU4MDk3NDczNCwiZXhwIjoxNTgxMjMzOTM0fQ.P8YtFxD-GvguZoYik8yh0AX0Bi4ewnGVzQPHZ7MZ1ic"
+* }
+*/
 
-});
 
 router.post('/login', (req, res) => {
   const { username, password } = req.body 
@@ -54,5 +94,33 @@ router.post('/login', (req, res) => {
       res.status(500).json({ err:"Server error, user could not be logged in" })
   })
 });
+
+/**
+ * @api {post} /api/login Login User
+ * @apiName LoginUser
+ * @apiGroup Auth
+ *
+ * @apiParam {String} username username
+ * @apiParam {String} password password
+ * 
+ * @apiSuccessExample Example of body:
+*{
+*   username: "Homer"
+*   password: "DuffBeer"
+*}
+ * 
+
+ * 
+ * @apiSuccessExample Example of Successful Reponse:
+ * HTTP/1.1 200 OK
+ * {
+ *  message: "User successfully logged in!",
+ *  username: "Homer",
+ *  id: 1,
+ *  first_name: "Homer",
+ *  last_name: "Simpson",
+ *  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkhvbWVyIiwiaWQiOjEsImlhdCI6MTU4MDk3NDczNCwiZXhwIjoxNTgxMjMzOTM0fQ.P8YtFxD-GvguZoYik8yh0AX0Bi4ewnGVzQPHZ7MZ1ic"
+ * }
+ */
 
 module.exports = router;
