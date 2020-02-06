@@ -5,7 +5,6 @@ const Conversations = require('./conversationsModels')
 // returns an array of conversations given a userID
 router.get("/:userId", (req, res) => {
     const { userId } = req.params 
-    console.log(req.params)
     Conversations.findConversationByUserId(userId)
     .then(conversations => {
         res.status(200).json(conversations)
@@ -119,8 +118,14 @@ HTTP/1.1 201 OK
  router.get("/:user_id/:conversation_id", (req, res) => {
     const { user_id, conversation_id } = req.params 
     Conversations.findByConversationId(user_id, conversation_id)
-    .then(conversation => {
-        res.status(200).json(conversation)
+        .then(conversation => {
+            if (conversation[0]){
+                res.status(200).json(conversation)
+            }
+            else {
+                res.status(401).json({err:"unable to find conversation or user id"})
+            }
+        
     })
     .catch(err => {
         console.log(err)
@@ -169,7 +174,7 @@ router.delete("/:user_id/:conversation_id", (req, res) => {
                     })
                 }
             else {
-                res.status(400).json({err:"unable to find conversation id"})
+                res.status(401).json({err:"unable to find conversation id"})
             }
       
     })
