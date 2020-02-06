@@ -21,13 +21,16 @@ server.get("/", (req,res) => {
   })
 
 
-
 /**
- * @api {get} / 
- * @apiName BASEURL
- * @apiGroup BASEURL
+* @api {get} / 
+* @apiName BASEURL
+* @apiGroup BASEURL
  
- */
+* @apiSuccessExample Example of Successful Reponse:
+*{
+* "message": "Empowerment Conversations API running."
+*}
+*/
  
 
 

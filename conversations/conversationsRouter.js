@@ -16,6 +16,52 @@ router.get("/:userId", (req, res) => {
     })
 })
 
+/**
+* @api {get} /api/user/:user_id Conversation List by User Id
+* @apiName ConversationsList
+* @apiGroup Conversations
+*
+* @apiParam {Integer} user_id the id of the user as a URL parameter
+* 
+* @apiSuccessExample Example of Successful Reponse:
+* HTTP/1.1 200 OK
+
+*[
+* {
+*    "id": 1,
+*   "recipient_first_name": "Joe",
+*    "recipient_last_name": "M",
+*    "user_id": 1,
+*    "recipient_phone": "1231231231",
+*    "topic": "Build Week burnout"
+*  },
+*  {
+*    "id": 2,
+*    "recipient_first_name": "Mandi",
+*    "recipient_last_name": "H",
+*    "user_id": 1,
+*    "recipient_phone": "1231231230",
+*    "topic": "Redux "
+*  },
+*  {
+*    "id": 3,
+*    "recipient_first_name": "Jason",
+*    "recipient_last_name": "S",
+*    "user_id": 1,
+*    "recipient_phone": "1231231232",
+*    "topic": "React"
+*  },
+*  {
+*    "id": 4,
+*    "recipient_first_name": "Lizzy",
+*    "recipient_last_name": "E",
+*    "user_id": 1,
+*    "recipient_phone": "1231231233",
+*    "topic": "React"
+*  }
+*]
+*/
+
 // adds a new conversation
 router.post("/:user_id", (req, res) => {
     const { user_id } = req.params 
