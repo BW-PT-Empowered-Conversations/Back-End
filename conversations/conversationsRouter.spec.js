@@ -44,3 +44,11 @@ describe("Finds conversation that does not exist", () => {
   })
 })
 
+describe("delete a specific conversation", () => {
+    it('it deletes a conversation with the specific user id and conversation id', async () => {
+    const res = await request(server)
+        .delete("/api/user/1/1")
+    expect(res.status).toBe(204)
+    //expect(res.body.message).toEqual("")
+  })
+})

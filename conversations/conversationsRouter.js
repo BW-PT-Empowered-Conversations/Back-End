@@ -3,9 +3,9 @@ const Conversations = require('./conversationsModels')
 
 
 // returns an array of conversations given a userID
-router.get("/:userId", (req, res) => {
-    const { userId } = req.params 
-    Conversations.findConversationByUserId(userId)
+router.get("/:user_id", (req, res) => {
+    const { user_id } = req.params 
+    Conversations.findConversationByUserId(user_id)
     .then(conversations => {
         res.status(200).json(conversations)
     })
@@ -74,7 +74,7 @@ router.post("/:user_id", (req, res) => {
     const newConversation = { user_id, recipient_first_name, recipient_last_name, recipient_phone, topic }
     Conversations.addConversation(newConversation)
     .then(id => {
-        console.log(id)
+        //console.log(id)
         res.status(201).json(id)
     })
     .catch(err => {
