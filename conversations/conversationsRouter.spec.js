@@ -14,15 +14,14 @@ describe("list of conversations for an existing user", () => {
   })
 })
 
-// describe("list of conversations for an invalid user", () => {
-//     it('show an array of conversations', async () => {
-//     const res = await request(server)
-//         .get("/api/user/1000")
-//     expect(res.status).toBe(401)
-//     expect(res.type).toBe("application/json")
-//     //expect(res.body.message).toEqual("")
-//   })
-// })
+describe("Finds an invalid conversation", () => {
+    it('should return a 401 and a message', async () => {
+    const res = await request(server)
+        .get("/api/user/1/1111")
+    expect(res.status).toBe(401)
+    expect(res.type).toBe("application/json")
+  })
+})
 
 describe("Finds a specific conversation", () => {
     it('shows an array with the specific user id and conversation id', async () => {
@@ -49,6 +48,21 @@ describe("delete a specific conversation", () => {
     const res = await request(server)
         .delete("/api/user/1/1")
     expect(res.status).toBe(204)
+    //expect(res.body.message).toEqual("")
+  })
+})
+
+describe("add new conversation", () => {
+    it('should create a new conversation', async () => {
+    const res = await request(server)
+        .post("/api/user/1")
+        .send({ recipient_first_name: "Bart", 
+                recipient_last_name: "Simpson", 
+	            recipient_user_phone:"9876543210",
+	            topic:"Redux",
+            })
+    expect(res.status).toBe(201)
+    expect(res.type).toBe("application/json")
     //expect(res.body.message).toEqual("")
   })
 })
